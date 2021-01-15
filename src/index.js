@@ -9,6 +9,7 @@ var AudiobridgePlugin = require('./webrtc/plugin/audiobridge-plugin');
 var AudioroomPlugin = require('./webrtc/plugin/audioroom-plugin');
 var StreamingPlugin = require('./webrtc/plugin/streaming-plugin');
 var RtpbroadcastPlugin = require('./webrtc/plugin/rtpbroadcast-plugin');
+var VideoroomPlugin = require('./webrtc/plugin/videoroom-plugin');
 
 module.exports = {
   Error: JanusError,
@@ -21,5 +22,6 @@ module.exports = {
   AudiobridgePlugin: AudiobridgePlugin,
   AudioroomPlugin: AudioroomPlugin,
   StreamingPlugin: StreamingPlugin,
+  VideoroomPlugin: VideoroomPlugin,
   RtpbroadcastPlugin: RtpbroadcastPlugin
 };

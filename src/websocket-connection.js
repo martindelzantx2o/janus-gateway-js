@@ -182,6 +182,9 @@ WebsocketConnection.prototype._queue = function(message) {
  */
 WebsocketConnection.prototype._send = function(message) {
   return new Promise(function(resolve) {
+    if(global.janusLog) { // debug purpose TBR
+      global.janusLog.info('[WS:Sending] ', message);
+    }
     this._webSocket.send(JSON.stringify(message));
     resolve();
   }.bind(this));

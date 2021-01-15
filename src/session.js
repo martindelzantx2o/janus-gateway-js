@@ -276,7 +276,7 @@ Session.prototype._isNaturalNumber = function(value) {
  */
 Session.prototype._startKeepAlive = function() {
   var keepAlive = this._connection.getOptions()['keepalive'];
-  if (this._isNaturalNumber(keepAlive) && keepAlive < 59000) {
+  if (this._isNaturalNumber(keepAlive) && keepAlive > 30000) {
     this._keepAlivePeriod = keepAlive;
   } else {
     this._keepAlivePeriod = 30000;
