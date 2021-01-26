@@ -21,7 +21,7 @@ function Session(connection, id) {
   this._id = id;
   this._plugins = {};
 
-  if (this._connection.getOptions()['keepalive']) {
+  if (this._connection && this._connection.getOptions()['keepalive']) {
     this._startKeepAlive();
   }
   var session = this;
@@ -207,7 +207,7 @@ Session.prototype._onAttach = function(outcomeMessage) {
       } else {
         throw new JanusError(incomeMessage);
       }
-    }.bind(this), this._connection.getOptions().transactiontimeout)
+    }.bind(this), this._connection && this._connection.getOptions().transactiontimeout)
   );
   return Promise.resolve(outcomeMessage);
 };
@@ -235,7 +235,7 @@ Session.prototype._onDestroy = function(outcomeMessage) {
       } else {
         throw new JanusError(incomeMessage);
       }
-    }.bind(this), this._connection.getOptions().transactiontimeout)
+    }.bind(this), this._connection && this._connection.getOptions().transactiontimeout)
   );
   return Promise.resolve(outcomeMessage);
 };
@@ -275,7 +275,7 @@ Session.prototype._isNaturalNumber = function(value) {
  * @protected
  */
 Session.prototype._startKeepAlive = function() {
-  var keepAlive = this._connection.getOptions()['keepalive'];
+  var keepAlive = this._connection && this._connection.getOptions()['keepalive'];
   if (this._isNaturalNumber(keepAlive) && keepAlive > 30000) {
     this._keepAlivePeriod = keepAlive;
   } else {
