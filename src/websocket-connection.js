@@ -154,8 +154,14 @@ WebsocketConnection.prototype.send = function(message) {
  */
 WebsocketConnection.prototype.onMessage = function(message) {
   try {
+    if(global.janusLog) { // debug purpose TBR
+      global.janusLog.info('[WS:Receiving] ', message);
+    }
     this.emit('message', message);
   } catch (error) {
+    if(global.janusLog) { // debug purpose TBR
+      global.janusLog.error('[WS:Receiving] ', message);
+    }
     this.emit('error', error);
   }
 };
