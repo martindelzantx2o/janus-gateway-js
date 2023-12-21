@@ -155,7 +155,7 @@ WebsocketConnection.prototype.send = function(message) {
 WebsocketConnection.prototype.onMessage = function(message) {
   try {
     if(global.janusLog) { // debug purpose TBR
-      global.janusLog.info('[WS:Receiving] ', message);
+      global.janusLog.debug('[WS:Receiving] ', message);
     }
     this.emit('message', message);
   } catch (error) {
@@ -189,7 +189,7 @@ WebsocketConnection.prototype._queue = function(message) {
 WebsocketConnection.prototype._send = function(message) {
   return new Promise(function(resolve) {
     if(global.janusLog) { // debug purpose TBR
-      global.janusLog.info('[WS:Sending] ', message);
+      global.janusLog.debug('[WS:Sending] ', message);
     }
     this._webSocket.send(JSON.stringify(message));
     resolve();
